@@ -14,9 +14,10 @@ public interface NodeServer {
     @FormUrlEncoded
     @POST("/login")
     Call<Usuario> login(@Field("email") String email, @Field("senha") String senha);
+
     @FormUrlEncoded
     @POST("/sessions")
-    Call<Usuario> criarsessions (@Field("email") String email, @Field("nome") String nome, @Field("senha") String senha);
+    Call<Usuario> criarsessions (@Field("nome") String nome,@Field("email") String email, @Field("senha") String senha);
 
     @GET("/lista")
     Call<List<Usuario>> ListarUsuarios ();
