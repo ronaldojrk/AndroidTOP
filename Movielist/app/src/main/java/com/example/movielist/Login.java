@@ -80,6 +80,7 @@ public class Login extends AppCompatActivity implements Organization {
                             Log.e("ONRESPONSE","LOGADO COM SUCESSO");
                             Toast toast = Toast.makeText(getApplicationContext(), "Seja bem vindo " + response.body().getNome(), Toast.LENGTH_SHORT);
                             toast.show();
+                            final String nome =response.body().getNome();
                             SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString(getString(R.string.pref_email), response.body().getEmail());
@@ -87,7 +88,7 @@ public class Login extends AppCompatActivity implements Organization {
 
                             editor.apply();
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent i = new Intent(getApplicationContext(), Filmesteste.class);
                             startActivity(i);
                         }else{
                             Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
