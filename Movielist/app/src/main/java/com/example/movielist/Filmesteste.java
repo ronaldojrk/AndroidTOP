@@ -57,9 +57,11 @@ public class Filmesteste extends AppCompatActivity {
                     tu =new ArrayList<>();
 
                     tu = response.body().getFilmes();
-                    //ri=response.body().getFilmes();
+                    
                     // TOP.setText(tu.get(1).getTitle());
                     for (Filme aluno: tu) {
+
+
                         nomes.add(aluno.getTitle());
                     }
                     ArrayAdapter ar = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,nomes);
