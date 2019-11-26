@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class Filmesteste extends AppCompatActivity {
     TextView TOP;
-     private RecyclerView RecyFilmes;
+      RecyclerView RecyFilmes;
     List<Filme>filmes;
     List<String> nomes ;
 
@@ -42,7 +42,7 @@ public class Filmesteste extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filmesteste);
         ///TOP = (TextView)findViewById(R.id.nomefilme);
-        RecyFilmes = (RecyclerView)findViewById(R.id.recy);
+        RecyFilmes = (RecyclerView)findViewById(R.id.recy1);
         //adapter
         //AdapterFilmes adapter = new AdapterFilmes();
         //configurando o Recy
@@ -89,7 +89,7 @@ public class Filmesteste extends AppCompatActivity {
                                     new RecyclerItemClickListener.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(View view, int position) {
-                                            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                                            Intent i = new Intent(getApplicationContext(), DetalhesFilme.class);
                                             startActivity(i);
                                         }
 
