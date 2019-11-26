@@ -3,18 +3,16 @@ package com.example.movielist;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.movielist.Api.RetrofitClient;
 import com.example.movielist.ApiFilme.RetrofitClientFilme;
-import com.example.movielist.Inteface.NodeServer;
 import com.example.movielist.InterfaceFilme.NodeServerFilme;
+import com.example.movielist.Models.Example;
+import com.example.movielist.Models.Filme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +47,13 @@ public class Filmesteste extends AppCompatActivity {
             public void onResponse(Call<Example> call, Response<Example> response) {
                 if(response.isSuccessful()){
                     Log.e("ONRESPONSE","LOGADO COM SUCESSO");
-                    //Toast toast = Toast.makeText(getApplicationContext(), "Seja bem vindo " + response.body().getNome(), Toast.LENGTH_SHORT);
-                   // toast.show();
+
                     ArrayList<Filme>ri = new ArrayList<>();
-                    List<Filme>eu = response.body().getFilmes();
+                    List<Filme>tu = response.body().getFilmes();
+                   // ri=response.body().getFilmes();
+                    final int page =response.body().getPage();
+                    final int results=response.body().getTotalResults();
+                    final String title =response.body().getFilmes().get(1).getTitle();
 
                     SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -60,10 +61,9 @@ public class Filmesteste extends AppCompatActivity {
                     //editor.putString(getString(R.string.pref_nome), response.body().getNome());
 
                     editor.apply();
-                    TOP.setText(ri.get(1).getTitle());
+                    TOP.setText(tu.get(1).getTitle());
 
-                    //Intent i = new Intent(getApplicationContext(), Filmesteste.class);
-                   // startActivity(i);
+
                 }
             }
 

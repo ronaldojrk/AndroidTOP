@@ -1,4 +1,4 @@
-package com.example.movielist;
+package com.example.movielist.Models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -15,7 +15,7 @@ public class Example {
     @SerializedName("total_pages")
     @Expose
     private Integer totalPages;
-    @SerializedName("filmes")
+    @SerializedName("results")
     @Expose
     private List<Filme> filmes = null;
 

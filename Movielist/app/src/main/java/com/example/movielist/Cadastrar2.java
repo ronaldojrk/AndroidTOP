@@ -15,6 +15,7 @@ import com.example.movielist.Api.RetrofitClient;
 import com.example.movielist.FuncoesEstaticas.FuncoesEstaticas;
 import com.example.movielist.Inteface.NodeServer;
 import com.example.movielist.Inteface.Organization;
+import com.example.movielist.Models.Usuario;
 
 import retrofit2.Call;
 import retrofit2.Callback;

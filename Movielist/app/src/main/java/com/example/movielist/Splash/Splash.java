@@ -1,4 +1,4 @@
-package com.example.movielist;
+package com.example.movielist.Splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
+
+import com.example.movielist.Login;
+import com.example.movielist.R;
 
 public class Splash extends AppCompatActivity {
 
@@ -20,7 +23,7 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(getApplicationContext(),Login.class);
+                Intent i = new Intent(getApplicationContext(), Login.class);
                 startActivity(i);
                 finish();
             }

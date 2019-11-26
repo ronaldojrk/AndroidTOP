@@ -1,10 +1,6 @@
 package com.example.movielist.InterfaceFilme;
 
-import com.example.movielist.Example;
-import com.example.movielist.Filme;
-import com.example.movielist.Usuario;
-
-import java.util.List;
+import com.example.movielist.Models.Example;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

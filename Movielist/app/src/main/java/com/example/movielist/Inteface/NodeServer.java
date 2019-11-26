@@ -1,6 +1,6 @@
 package com.example.movielist.Inteface;
 
-import com.example.movielist.Usuario;
+import com.example.movielist.Models.Usuario;
 
 import java.util.List;
 

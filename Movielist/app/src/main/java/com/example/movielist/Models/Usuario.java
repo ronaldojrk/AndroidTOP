@@ -1,4 +1,4 @@
-package com.example.movielist;
+package com.example.movielist.Models;
 
 public class Usuario {
     private String nome;

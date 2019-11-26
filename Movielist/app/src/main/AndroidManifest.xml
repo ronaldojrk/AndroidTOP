@@ -15,7 +15,7 @@
         <activity android:name=".Filmesteste"></activity>
         <activity android:name=".Cadastrar2" />
         <activity android:name=".Login" />
-        <activity android:name=".Splash">
+        <activity android:name=".Splash.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
