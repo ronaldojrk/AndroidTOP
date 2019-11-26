@@ -1,15 +1,25 @@
 package com.example.movielist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.movielist.ApiFilme.RetrofitClientFilme;
+import com.example.movielist.Inteface.Organization;
 import com.example.movielist.InterfaceFilme.NodeServerFilme;
 import com.example.movielist.Models.Example;
 import com.example.movielist.Models.Filme;
@@ -23,12 +33,23 @@ import retrofit2.Response;
 
 public class Filmesteste extends AppCompatActivity {
     TextView TOP;
+      RecyclerView RecyFilmes;
+    List<Filme>filmes;
+    List<String> nomes ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filmesteste);
-
+        ///TOP = (TextView)findViewById(R.id.nomefilme);
+        RecyFilmes = (RecyclerView)findViewById(R.id.recy1);
+        //adapter
+        //AdapterFilmes adapter = new AdapterFilmes();
+        //configurando o Recy
+        /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyFilmes.setLayoutManager(layoutManager);
+       RecyFilmes.setHasFixedSize(true);*
+        RecyFilmes.setAdapter(adapter);*/
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
         {
@@ -38,33 +59,64 @@ public class Filmesteste extends AppCompatActivity {
             //your codes here
 
         }
-        TOP = (TextView)findViewById(R.id.nomefilme);
+        recuperarapi();
 
+    }
+
+    private void recuperarapi() {
         NodeServerFilme service = RetrofitClientFilme.getRetrofitInstance().create(NodeServerFilme.class);
         Call<Example> call = service.ListarFilmes();
+
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 if(response.isSuccessful()){
                     Log.e("ONRESPONSE","LOGADO COM SUCESSO");
+                    Example exemple =response.body();
+                    filmes= exemple.getFilmes();
+                   // TOP.setText(filmes.get(6).getTitle());
+                    AdapterFilmes adapter = new AdapterFilmes(filmes);
+                    //configurando o Recy
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                    RecyFilmes.setLayoutManager(layoutManager);
+                    RecyFilmes.setHasFixedSize(true);
+                    RecyFilmes.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayout.VERTICAL));
+                    RecyFilmes.setAdapter(adapter);
+                    RecyFilmes.addOnItemTouchListener(
+                            new RecyclerItemClickListener(
+                                    getApplicationContext(),
+                                    RecyFilmes,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+                                            Intent i = new Intent(getApplicationContext(), DetalhesFilme.class);
+                                            startActivity(i);
+                                        }
 
-                    ArrayList<Filme>ri = new ArrayList<>();
-                    List<Filme>tu = response.body().getFilmes();
-                   // ri=response.body().getFilmes();
-                    final int page =response.body().getPage();
-                    final int results=response.body().getTotalResults();
-                    final String title =response.body().getFilmes().get(1).getTitle();
+                                        @Override
+                                        public void onLongItemClick(View view, int position) {
 
-                    SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //editor.putString(getString(R.string.pref_email), response.body().getEmail());
-                    //editor.putString(getString(R.string.pref_nome), response.body().getNome());
+                                        }
 
-                    editor.apply();
-                    TOP.setText(tu.get(1).getTitle());
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        }
+                                    }
+                            )
+                    );
+                    //Filmesteste testeDeFilmes =filmes;
+                    //for( int i=0;i<filmes.size();i++){
+                       // nomes.add(filmes.get(i).getTitle());
+                       // nomes.get(i);
+                   // }
 
 
+
+                }else{
+                    Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
                 }
+
             }
 
             @Override
@@ -72,7 +124,7 @@ public class Filmesteste extends AppCompatActivity {
 
             }
         });
-
-
     }
+
+
 }
