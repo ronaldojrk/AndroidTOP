@@ -9,12 +9,12 @@
         android:text="titulo"
         android:textSize="20dp"
         android:layout_marginRight="50dp"
-        android:textColor="@color/branco"/>
+        android:textColor="#000"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ano2"
-        android:textColor="@color/branco"
+        android:textColor="#000"
         android:text="ano2"/>
 
 </LinearLayout>

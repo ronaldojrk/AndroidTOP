@@ -13,24 +13,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:hint="email"
+        android:textColor="@color/branco"
+        android:textColorHint="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:textColor="@color/branco"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/senha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="senha"
+        android:textColor="@color/branco"
+        android:textColorHint="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        android:textColor="@color/branco"/>
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/confimar"
