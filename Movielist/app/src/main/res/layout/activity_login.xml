@@ -11,12 +11,13 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="60dp"
         android:hint="email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:textColor="@color/branco"/>
 
     <EditText
         android:id="@+id/senha"
@@ -27,19 +28,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        android:textColor="@color/branco"/>
 
     <Button
         android:id="@+id/confimar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="44dp"
-        android:background="@color/colorAccent"
+        android:background="@color/roxo"
         android:text="login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha" />
+        app:layout_constraintTop_toBottomOf="@+id/senha"
+        android:textColor="@color/branco"/>
 
     <Button
         android:id="@+id/cadastrar"
@@ -48,8 +52,14 @@
         android:layout_marginStart="152dp"
         android:layout_marginTop="76dp"
         android:text="cadastro"
+        android:background="@color/cardview_light_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confimar" />
+        app:layout_constraintTop_toBottomOf="@+id/confimar"
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -59,6 +69,7 @@
         android:gravity="center"
         android:text="Faça o Login!"
         android:textSize="26dp"
+        android:textColor="@color/branco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

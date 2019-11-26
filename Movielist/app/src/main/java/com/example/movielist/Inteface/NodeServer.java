@@ -1,5 +1,6 @@
 package com.example.movielist.Inteface;
 
+import com.example.movielist.Models.Filmefavoritos;
 import com.example.movielist.Models.Usuario;
 
 import java.util.List;
@@ -20,7 +21,11 @@ public interface NodeServer {
     Call<Usuario> criarsessions (@Field("nome") String nome,@Field("email") String email, @Field("senha") String senha);
 
     @GET("/lista")
-    Call<List<Usuario>> ListarUsuarios ();
+    Call<List<Usuario>> ListarUsuarios();
+
+    @FormUrlEncoded
+    @POST("/criarfavo")
+    Call<Filmefavoritos> favoritos(@Field("nome") String nome,@Field("id_filme") String idfilme, @Field("id_user") String idusuario);
 
 
 }

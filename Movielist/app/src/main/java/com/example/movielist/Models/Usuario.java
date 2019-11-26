@@ -1,12 +1,16 @@
 package com.example.movielist.Models;
 
 public class Usuario {
+
     private String nome;
     private String email;
     private String senha;
     private Boolean sucesso;
 
-    public Usuario(String nome, String email, String senha) {
+
+
+    public Usuario( String nome, String email, String senha) {
+
         this.nome = nome;
         this.email = email;
         this.senha = senha;
