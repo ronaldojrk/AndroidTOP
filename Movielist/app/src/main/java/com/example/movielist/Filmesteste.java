@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +38,8 @@ public class Filmesteste extends AppCompatActivity {
       RecyclerView RecyFilmes;
     List<Filme>filmes;
     List<String> nomes ;
+    EditText pesquisarPega;
+    Button pesquisar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class Filmesteste extends AppCompatActivity {
         setContentView(R.layout.activity_filmesteste);
         ///TOP = (TextView)findViewById(R.id.nomefilme);
         RecyFilmes = (RecyclerView)findViewById(R.id.recy1);
+        pesquisarPega = (EditText)findViewById(R.id.pesquisartop);
+        pesquisar = (Button) findViewById(R.id.botaotop);
         //adapter
         //AdapterFilmes adapter = new AdapterFilmes();
         //configurando o Recy
@@ -60,6 +66,12 @@ public class Filmesteste extends AppCompatActivity {
 
         }
         recuperarapi();
+        pesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // recuperarapipesquisar();
+            }
+        });
 
     }
 
@@ -120,6 +132,80 @@ public class Filmesteste extends AppCompatActivity {
                        // nomes.add(filmes.get(i).getTitle());
                        // nomes.get(i);
                    // }
+
+
+
+                }else{
+                    Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void recuperarapipesquisar() {
+        String tudo =pesquisarPega.getText().toString();
+        NodeServerFilme service = RetrofitClientFilme.getRetrofitInstance().create(NodeServerFilme.class);
+        Call<Example> call2 = service.PesquisarFilmes(tudo);
+
+        call2.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                if(response.isSuccessful()){
+                    Log.e("ONRESPONSE","LOGADO COM SUCESSO");
+                    Example exemple =response.body();
+                    filmes= exemple.getFilmes();
+                    // TOP.setText(filmes.get(6).getTitle());
+                    AdapterFilmes adapter = new AdapterFilmes(filmes);
+                    //configurando o Recy
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                    RecyFilmes.setLayoutManager(layoutManager);
+                    RecyFilmes.setHasFixedSize(true);
+                    RecyFilmes.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayout.VERTICAL));
+                    RecyFilmes.setAdapter(adapter);
+                    RecyFilmes.addOnItemTouchListener(
+                            new RecyclerItemClickListener(
+                                    getApplicationContext(),
+                                    RecyFilmes,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+                                            Intent i = new Intent(getApplicationContext(), DetalhesFilme.class);
+                                            FilmeParaPassa novo= new FilmeParaPassa();
+                                            novo.id=filmes.get(position).getId();
+                                            novo.title=filmes.get(position).getTitle();
+                                            novo.overview=filmes.get(position).getOverview();
+                                            novo.popularity =filmes.get(position).getPopularity();
+                                            novo.releaseDate =filmes.get(position).getReleaseDate();
+                                            novo.voteAverage = filmes.get(position).getVoteAverage();
+                                            novo.posterPath = filmes.get(position).getPosterPath();
+                                            i.putExtra(DetalhesFilme.EXTRA_ALUNO, novo);
+
+                                            startActivity(i);
+                                        }
+
+                                        @Override
+                                        public void onLongItemClick(View view, int position) {
+
+                                        }
+
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        }
+                                    }
+                            )
+                    );
+                    //Filmesteste testeDeFilmes =filmes;
+                    //for( int i=0;i<filmes.size();i++){
+                    // nomes.add(filmes.get(i).getTitle());
+                    // nomes.get(i);
+                    // }
 
 
 
