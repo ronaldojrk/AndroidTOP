@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity implements Organization {
 
                             editor.apply();
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent i = new Intent(getApplicationContext(), Filmesteste.class);
                             startActivity(i);
                         }else{
                             Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");

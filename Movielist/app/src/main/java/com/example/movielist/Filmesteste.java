@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.movielist.ApiFilme.RetrofitClientFilme;
+import com.example.movielist.Inteface.Organization;
 import com.example.movielist.InterfaceFilme.NodeServerFilme;
 import com.example.movielist.Models.Example;
 import com.example.movielist.Models.Filme;
@@ -23,12 +26,16 @@ import retrofit2.Response;
 
 public class Filmesteste extends AppCompatActivity {
     TextView TOP;
+    ListView viu;
+    List<Filme>tu;
+    List<String> nomes ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filmesteste);
-
+        TOP = (TextView)findViewById(R.id.nomefilme);
+        viu = (ListView) findViewById(R.id.listviu);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
         {
@@ -38,33 +45,32 @@ public class Filmesteste extends AppCompatActivity {
             //your codes here
 
         }
-        TOP = (TextView)findViewById(R.id.nomefilme);
 
         NodeServerFilme service = RetrofitClientFilme.getRetrofitInstance().create(NodeServerFilme.class);
         Call<Example> call = service.ListarFilmes();
+
         call.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {
                 if(response.isSuccessful()){
                     Log.e("ONRESPONSE","LOGADO COM SUCESSO");
+                    tu =new ArrayList<>();
 
-                    ArrayList<Filme>ri = new ArrayList<>();
-                    List<Filme>tu = response.body().getFilmes();
-                   // ri=response.body().getFilmes();
-                    final int page =response.body().getPage();
-                    final int results=response.body().getTotalResults();
-                    final String title =response.body().getFilmes().get(1).getTitle();
+                    tu = response.body().getFilmes();
+                    //ri=response.body().getFilmes();
+                    // TOP.setText(tu.get(1).getTitle());
+                    for (Filme aluno: tu) {
+                        nomes.add(aluno.getTitle());
+                    }
+                    ArrayAdapter ar = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,nomes);
 
-                    SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    //editor.putString(getString(R.string.pref_email), response.body().getEmail());
-                    //editor.putString(getString(R.string.pref_nome), response.body().getNome());
-
-                    editor.apply();
-                    TOP.setText(tu.get(1).getTitle());
+                    viu.setAdapter(ar);
 
 
+                }else{
+                    Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
                 }
+
             }
 
             @Override
@@ -75,4 +81,10 @@ public class Filmesteste extends AppCompatActivity {
 
 
     }
+
+
+
+    //TOP.setText(tu.get(1).getTitle());
+
+
 }
