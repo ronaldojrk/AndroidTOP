@@ -1,38 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cadastrar2"
+    android:background="#202020"
+    android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="30dp"
-    android:gravity="center"
-    android:background="@color/colorPrimary">
+    tools:context=".Cadastrar2">
 
     <EditText
         android:id="@+id/loginCA"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="132dp"
         android:hint="nome"
-        android:layout_width="200dp"
-        android:layout_height="40dp" />
+        android:textColor="#fff"
+        android:textColorHint="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/emailCA"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:hint="email"
-        android:layout_width="200dp"
-        android:layout_height="40dp" />
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginCA" />
+
     <EditText
         android:id="@+id/senhaCA"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
         android:hint="senha"
-        android:layout_width="200dp"
-        android:layout_height="40dp" />
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailCA" />
+
     <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
         android:id="@+id/cadastrarCA"
-        android:text="cadastrar"/>
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
+        android:text="cadastrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/senhaCA" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Cadastre-se já, é gratuito!"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
