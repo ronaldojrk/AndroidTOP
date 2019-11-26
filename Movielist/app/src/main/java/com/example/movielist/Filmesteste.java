@@ -1,13 +1,20 @@
 package com.example.movielist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,16 +33,23 @@ import retrofit2.Response;
 
 public class Filmesteste extends AppCompatActivity {
     TextView TOP;
-    ListView viu;
-    List<Filme>tu;
+     private RecyclerView RecyFilmes;
+    List<Filme>filmes;
     List<String> nomes ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filmesteste);
-        TOP = (TextView)findViewById(R.id.nomefilme);
-        viu = (ListView) findViewById(R.id.listviu);
+        ///TOP = (TextView)findViewById(R.id.nomefilme);
+        RecyFilmes = (RecyclerView)findViewById(R.id.recy);
+        //adapter
+        //AdapterFilmes adapter = new AdapterFilmes();
+        //configurando o Recy
+        /*RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyFilmes.setLayoutManager(layoutManager);
+       RecyFilmes.setHasFixedSize(true);*
+        RecyFilmes.setAdapter(adapter);*/
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8)
         {
@@ -45,7 +59,11 @@ public class Filmesteste extends AppCompatActivity {
             //your codes here
 
         }
+        recuperarapi();
 
+    }
+
+    private void recuperarapi() {
         NodeServerFilme service = RetrofitClientFilme.getRetrofitInstance().create(NodeServerFilme.class);
         Call<Example> call = service.ListarFilmes();
 
@@ -54,19 +72,45 @@ public class Filmesteste extends AppCompatActivity {
             public void onResponse(Call<Example> call, Response<Example> response) {
                 if(response.isSuccessful()){
                     Log.e("ONRESPONSE","LOGADO COM SUCESSO");
-                    tu =new ArrayList<>();
+                    Example exemple =response.body();
+                    filmes= exemple.getFilmes();
+                   // TOP.setText(filmes.get(6).getTitle());
+                    AdapterFilmes adapter = new AdapterFilmes(filmes);
+                    //configurando o Recy
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+                    RecyFilmes.setLayoutManager(layoutManager);
+                    RecyFilmes.setHasFixedSize(true);
+                    RecyFilmes.addItemDecoration(new DividerItemDecoration(getApplicationContext(),LinearLayout.VERTICAL));
+                    RecyFilmes.setAdapter(adapter);
+                    RecyFilmes.addOnItemTouchListener(
+                            new RecyclerItemClickListener(
+                                    getApplicationContext(),
+                                    RecyFilmes,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+                                            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                                            startActivity(i);
+                                        }
 
-                    tu = response.body().getFilmes();
-                    
-                    // TOP.setText(tu.get(1).getTitle());
-                    for (Filme aluno: tu) {
+                                        @Override
+                                        public void onLongItemClick(View view, int position) {
 
+                                        }
 
-                        nomes.add(aluno.getTitle());
-                    }
-                    ArrayAdapter ar = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,nomes);
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    viu.setAdapter(ar);
+                                        }
+                                    }
+                            )
+                    );
+                    //Filmesteste testeDeFilmes =filmes;
+                    //for( int i=0;i<filmes.size();i++){
+                       // nomes.add(filmes.get(i).getTitle());
+                       // nomes.get(i);
+                   // }
+
 
 
                 }else{
@@ -80,13 +124,7 @@ public class Filmesteste extends AppCompatActivity {
 
             }
         });
-
-
     }
-
-
-
-    //TOP.setText(tu.get(1).getTitle());
 
 
 }

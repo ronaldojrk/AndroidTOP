@@ -7,14 +7,8 @@
     tools:context=".Filmesteste"
     android:gravity="center">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="nome"
-        android:id="@+id/nomefilme"/>
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listviu"/>
+        android:id="@+id/recy"/>
 </LinearLayout>
