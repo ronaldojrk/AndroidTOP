@@ -90,6 +90,16 @@ public class Filmesteste extends AppCompatActivity {
                                         @Override
                                         public void onItemClick(View view, int position) {
                                             Intent i = new Intent(getApplicationContext(), DetalhesFilme.class);
+                                            FilmeParaPassa novo= new FilmeParaPassa();
+                                            novo.id=filmes.get(position).getId();
+                                            novo.title=filmes.get(position).getTitle();
+                                            novo.overview=filmes.get(position).getOverview();
+                                            novo.popularity =filmes.get(position).getPopularity();
+                                            novo.releaseDate =filmes.get(position).getReleaseDate();
+                                            novo.voteAverage = filmes.get(position).getVoteAverage();
+                                            novo.posterPath = filmes.get(position).getPosterPath();
+                                            i.putExtra(DetalhesFilme.EXTRA_ALUNO, novo);
+
                                             startActivity(i);
                                         }
 

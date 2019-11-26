@@ -2,6 +2,7 @@ package com.example.movielist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -17,6 +18,8 @@ public class DetalhesFilme extends AppCompatActivity {
     TextView tvNota;
     TextView tvResumo;
     RatingBar ratingBar;
+    public static final String EXTRA_ALUNO = "aluno";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,10 @@ public class DetalhesFilme extends AppCompatActivity {
         tvNota = findViewById(R.id.tvNota);
         ratingBar = findViewById(R.id.ratingBar);
         tvTitulo = findViewById(R.id.tvTitulo);
+        Intent intent = getIntent();
+FilmeParaPassa filme23= (FilmeParaPassa) intent.getSerializableExtra(EXTRA_ALUNO);
+tvTitulo.setText(filme23.title);
+
         Picasso.get().load("https://image.tmdb.org/t/p/w500//5myQbDzw3l8K9yofUXRJ4UTVgam.jpg")
                 .resize(430,200)
                 .into(imageView);
