@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetalhesFilme"></activity>
+        <activity android:name=".PesquisarFIlme"></activity>
+        <activity android:name=".DetalhesFilme" />
         <activity android:name=".Filmesteste" />
         <activity android:name=".Cadastrar2" />
         <activity android:name=".Login" />
