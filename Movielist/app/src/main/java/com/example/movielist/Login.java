@@ -85,11 +85,13 @@ public class Login extends AppCompatActivity implements Organization {
                             SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString(getString(R.string.pref_email), response.body().getEmail());
+                            editor.putString(getString(R.string.pref_email), response.body().getEmail());
                             editor.putString(getString(R.string.pref_nome), response.body().getNome());
 
                             editor.apply();
 
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent i = new Intent(getApplicationContext(), DrawerActivity.class);
                             startActivity(i);
                         }else{
                             Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
