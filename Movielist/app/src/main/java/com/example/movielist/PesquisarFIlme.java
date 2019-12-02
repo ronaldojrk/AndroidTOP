@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class PesquisarFIlme extends AppCompatActivity {
         EditText nome;
-        Button pesquisar,menupesquisar;
+        Button pesquisar,menupesquisar,voltar2,avancar2;
     RecyclerView RecyFilmes2;
     List<Filme> filmes;
     List<String> nomes;
@@ -41,6 +41,8 @@ public class PesquisarFIlme extends AppCompatActivity {
         pesquisar = (Button) findViewById(R.id.butonconfim);
         menupesquisar = (Button) findViewById(R.id.voltandohome);
         RecyFilmes2 = (RecyclerView) findViewById(R.id.lista_filmes2);
+        voltar2 = (Button) findViewById(R.id.fragment_voltar2);
+        avancar2 = (Button) findViewById(R.id.fragment_Avancar2);
 
 
         pesquisar.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +62,28 @@ public class PesquisarFIlme extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), DrawerActivity.class);
                 startActivity(i);
+            }
+        });
+        avancar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pagina++;
+                String page ="&page=";
+                String page2 = page.concat(String.valueOf(pagina));
+                String page3 = texto.concat(page2);
+                pesquisartudo(page3);
+            }
+        });
+        voltar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pagina>0){
+                    pagina--;
+                }
+                String page ="&page=";
+                String page2 = page.concat(String.valueOf(pagina));
+                String page3 = texto.concat(page2);
+                pesquisartudo(page3);
             }
         });
 

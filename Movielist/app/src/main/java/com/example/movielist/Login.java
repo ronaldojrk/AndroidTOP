@@ -93,8 +93,11 @@ public class Login extends AppCompatActivity implements Organization {
 //                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             Intent i = new Intent(getApplicationContext(), DrawerActivity.class);
                             startActivity(i);
+                            finish();
                         }else{
                             Log.e("ONRESPONSE","CREDENCIAIS INVÁLIDAS");
+                            Toast toast = Toast.makeText(getApplicationContext(), "credencias invalidas " , Toast.LENGTH_SHORT);
+                            toast.show();
                         }
 
                     }
