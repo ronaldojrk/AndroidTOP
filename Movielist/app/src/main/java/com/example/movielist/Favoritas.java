@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,12 +24,21 @@ import java.util.ArrayList;
 public class Favoritas extends AppCompatActivity {
     ArrayList<Filmefavoritos> filmes;
     RecyclerView mostrar;
+    Button menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoritas);
         //mostrar = (TextView) findViewById(R.id.textfilme);
         mostrar = (RecyclerView) findViewById(R.id.todo);
+       menu = (Button) findViewById(R.id.menufavoritos);
+       menu.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent i = new Intent(getApplicationContext(), DrawerActivity.class);
+               startActivity(i);
+           }
+       });
 
 
         FilmefavoritoDAO crud = new FilmefavoritoDAO(getApplicationContext());

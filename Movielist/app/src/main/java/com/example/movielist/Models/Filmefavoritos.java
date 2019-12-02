@@ -14,8 +14,21 @@ public class Filmefavoritos {
     private String nome;
     private String idfilme;
     private String idusuario;
+    private Boolean sucesso;
 
-    public Filmefavoritos(int id,String nome, String idfilme, String idusuario) {
+    public Filmefavoritos() {
+
+    }
+
+    public Boolean getSucesso() {
+        return sucesso;
+    }
+
+    public void setSucesso(Boolean sucesso) {
+        this.sucesso = sucesso;
+    }
+
+    public Filmefavoritos(int id, String nome, String idfilme, String idusuario) {
         this.id=id;
         this.nome = nome;
         this.idfilme = idfilme;

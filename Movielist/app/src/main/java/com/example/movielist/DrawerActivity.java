@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -47,8 +48,10 @@ public class DrawerActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_gallery:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FavoritosFragment()).commit();
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        //new FavoritosFragment()).commit();
+                Intent i = new Intent(getApplicationContext(), Favoritas.class);
+                startActivity(i);
 
                 break;
         }
