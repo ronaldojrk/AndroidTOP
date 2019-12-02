@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class ListaFilmesFragment extends Fragment {
     RecyclerView RecyFilmes;
     List<Filme> filmes;
     List<String> nomes;
+    Button voltar,avancar;
+    int pagina=1;
 
     @Nullable
     @Override
@@ -50,6 +53,8 @@ public class ListaFilmesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyFilmes = (RecyclerView) view.findViewById(R.id.lista_filmes);
+        avancar = (Button) view.findViewById(R.id.fragment_Avancar);
+        voltar = (Button) view.findViewById(R.id.fragment_voltar);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -58,7 +63,97 @@ public class ListaFilmesFragment extends Fragment {
             //your codes here
 
         }
-        recuperarapi();
+        //recuperarapi();
+        passarpagina(pagina);
+        avancar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pagina++;
+                passarpagina(pagina);
+            }
+        });
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pagina>0){
+                    pagina--;   
+                }
+
+                passarpagina(pagina);
+            }
+        });
+    }
+
+    private void passarpagina(int x ) {
+        NodeServerFilme service = RetrofitClientFilme.getRetrofitInstance().create(NodeServerFilme.class);
+        Call<Example> call = service.Passarpagina(String.valueOf(x));
+
+        call.enqueue(new Callback<Example>() {
+            @Override
+            public void onResponse(Call<Example> call, Response<Example> response) {
+                if (response.isSuccessful()) {
+                    Log.e("ONRESPONSE", "LOGADO COM SUCESSO");
+                    Example exemple = response.body();
+                    filmes = exemple.getFilmes();
+                    // TOP.setText(filmes.get(6).getTitle());
+                    AdapterFilmes adapter = new AdapterFilmes(filmes);
+                    //configurando o Recy
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    RecyFilmes.setLayoutManager(layoutManager);
+                    RecyFilmes.setHasFixedSize(true);
+                    RecyFilmes.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));
+                    RecyFilmes.setAdapter(adapter);
+                    RecyFilmes.addOnItemTouchListener(
+                            new RecyclerItemClickListener(
+                                    getContext(),
+                                    RecyFilmes,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+                                            Intent i = new Intent(getContext(), DetalhesFilme.class);
+                                            FilmeParaPassa novo = new FilmeParaPassa();
+                                            novo.id = filmes.get(position).getId();
+                                            novo.title = filmes.get(position).getTitle();
+                                            novo.overview = filmes.get(position).getOverview();
+                                            novo.popularity = filmes.get(position).getPopularity();
+                                            novo.releaseDate = filmes.get(position).getReleaseDate();
+                                            novo.voteAverage = filmes.get(position).getVoteAverage();
+                                            novo.posterPath = filmes.get(position).getPosterPath();
+                                            i.putExtra(DetalhesFilme.EXTRA_ALUNO, novo);
+
+                                            startActivity(i);
+                                        }
+
+                                        @Override
+                                        public void onLongItemClick(View view, int position) {
+
+                                        }
+
+                                        @Override
+                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        }
+                                    }
+                            )
+                    );
+                    //Filmesteste testeDeFilmes =filmes;
+                    //for( int i=0;i<filmes.size();i++){
+                    // nomes.add(filmes.get(i).getTitle());
+                    // nomes.get(i);
+                    // }
+
+
+                } else {
+                    Log.e("ONRESPONSE", "CREDENCIAIS INVÁLIDAS");
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Example> call, Throwable t) {
+
+            }
+        });
     }
 
     private void recuperarapi() {

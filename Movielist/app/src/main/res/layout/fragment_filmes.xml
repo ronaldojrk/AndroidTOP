@@ -5,9 +5,26 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:gravity="center"
-    tools:context=".Fragment.ListaFilmesFragment">
+    tools:context=".Fragment.ListaFilmesFragment" android:orientation="vertical">
+
+    <LinearLayout
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VOLTAR"
+            android:id="@+id/fragment_voltar"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVANCAR"
+            android:id="@+id/fragment_Avancar"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="20dp"
         android:id="@+id/lista_filmes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
