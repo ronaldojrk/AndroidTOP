@@ -16,16 +16,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielist.AdapterFilmes;
 import com.example.movielist.ApiFilme.RetrofitClientFilme;
 import com.example.movielist.DetalhesFilme;
+import com.example.movielist.DrawerActivity;
 import com.example.movielist.FilmeParaPassa;
 import com.example.movielist.InterfaceFilme.NodeServerFilme;
 import com.example.movielist.Models.Example;
 import com.example.movielist.Models.Filme;
+import com.example.movielist.PesquisarFIlme;
 import com.example.movielist.R;
 import com.example.movielist.RecyclerItemClickListener;
 
@@ -40,7 +43,7 @@ public class ListaFilmesFragment extends Fragment {
     RecyclerView RecyFilmes;
     List<Filme> filmes;
     List<String> nomes;
-    Button voltar,avancar;
+    Button voltar,avancar,pesquisar;
     int pagina=1;
 
     @Nullable
@@ -55,6 +58,7 @@ public class ListaFilmesFragment extends Fragment {
         RecyFilmes = (RecyclerView) view.findViewById(R.id.lista_filmes);
         avancar = (Button) view.findViewById(R.id.fragment_Avancar);
         voltar = (Button) view.findViewById(R.id.fragment_voltar);
+        pesquisar = (Button) view.findViewById(R.id.pesquisardinamica);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -76,10 +80,17 @@ public class ListaFilmesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(pagina>0){
-                    pagina--;   
+                    pagina--;
                 }
 
                 passarpagina(pagina);
+            }
+        });
+        pesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), PesquisarFIlme.class);
+                startActivity(i);
             }
         });
     }
@@ -98,7 +109,8 @@ public class ListaFilmesFragment extends Fragment {
                     // TOP.setText(filmes.get(6).getTitle());
                     AdapterFilmes adapter = new AdapterFilmes(filmes);
                     //configurando o Recy
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                   // RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),3);
                     RecyFilmes.setLayoutManager(layoutManager);
                     RecyFilmes.setHasFixedSize(true);
                     RecyFilmes.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayout.VERTICAL));

@@ -3,12 +3,14 @@ package com.example.movielist;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielist.Models.Filme;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,7 +31,11 @@ public class AdapterFilmes  extends RecyclerView.Adapter<AdapterFilmes.MyViewHol
     public void onBindViewHolder( MyViewHolder holder, int position) {
        Filme filmex =listafilme.get(position);
         holder.titulo.setText(filmex.getTitle());
-        holder.ano.setText(filmex.getReleaseDate());
+        //holder.ano.setText(filmex.getReleaseDate());
+        Picasso.get().load("https://image.tmdb.org/t/p/w500/"+filmex.getPosterPath())
+                .resize(120,160)
+                .into(holder.foto);
+
 
     }
 
@@ -41,10 +47,13 @@ public class AdapterFilmes  extends RecyclerView.Adapter<AdapterFilmes.MyViewHol
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView titulo,ano;
+        ImageView foto;
     public MyViewHolder(View itemView) {
         super(itemView);
         titulo = itemView.findViewById(R.id.titulo);
-        ano = itemView.findViewById(R.id.ano);
+       // ano = itemView.findViewById(R.id.ano);
+        foto = itemView.findViewById(R.id.fotofilme);
+
     }
 }
 

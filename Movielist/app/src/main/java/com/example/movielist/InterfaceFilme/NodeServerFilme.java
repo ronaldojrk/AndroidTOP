@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface NodeServerFilme {
 
@@ -15,5 +16,10 @@ public interface NodeServerFilme {
 
     @GET("3/movie/popular?api_key=0e03db20142a60bdb0d54b4087ad42fa&language=pt-BR&")
     Call<Example> Passarpagina(@Query("page") String page);
+
+    /*@GET("3/search/movie?api_key=0e03db20142a60bdb0d54b4087ad42fa&language=pt-BR")
+    Call<Example> Pesquisar(@Query("query") String query);*/
+    @GET
+    Call<Example> Pesquisar(@Url String Url);
 
 }

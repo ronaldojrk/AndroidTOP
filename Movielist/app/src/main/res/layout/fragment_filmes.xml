@@ -12,15 +12,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VOLTAR"
-            android:id="@+id/fragment_voltar"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VOLTAR"
+        android:id="@+id/fragment_voltar"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AVANCAR"
             android:id="@+id/fragment_Avancar"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_search"
+            android:id="@+id/pesquisardinamica"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

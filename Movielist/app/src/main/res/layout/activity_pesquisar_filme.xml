@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#202020"
-    tools:context=".PesquisarFIlme">
+    tools:context=".PesquisarFIlme"
+    android:orientation="vertical"
+    >
 
     <TextView
         android:id="@+id/tvBuscaFilme"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+
         android:gravity="center"
         android:text="Buscar FIlmes"
         android:textColor="#fff"
@@ -23,18 +25,56 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:drawableLeft="@android:drawable/ic_menu_search"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Pesquise por um filme"
+        android:hint="Pesquise por um filme"
         android:textColor="#fff"
         android:textColorHint="#fff"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBuscaFilme" />
+         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/butonconfim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="pes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.094"
+        android:layout_gravity="center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_filmes2"
+        android:layout_width="match_parent"
+        android:layout_height="347dp"
+        android:paddingTop="20dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginLeft="100dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VOLTAR"
+            android:id="@+id/fragment_voltar2"/>
+
+        <Button
+            android:id="@+id/fragment_Avancar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVANCAR" />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
