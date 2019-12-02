@@ -21,7 +21,7 @@ public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
-    private TextView tvEmailDrawer;
+    private TextView tvEmailDrawer,TOPO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +34,13 @@ public class DrawerActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
         tvEmailDrawer = header.findViewById(R.id.textView);
+        TOPO = header.findViewById(R.id.TOPQ);
         SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
         String result = sharedPreferences.getString(getString(R.string.pref_email), "");
+        SharedPreferences sharedPreferences2 = getSharedPreferences(getString(R.string.pref_key), Context.MODE_PRIVATE);
+        String result2 = sharedPreferences2.getString(getString(R.string.pref_nome), "");
+
+        TOPO.setText(result2);
         tvEmailDrawer.setText(result);
     }
 

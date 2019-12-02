@@ -43,7 +43,7 @@ public class ListaFilmesFragment extends Fragment {
     RecyclerView RecyFilmes;
     List<Filme> filmes;
     List<String> nomes;
-    Button voltar,avancar,pesquisar;
+    Button voltar,avancar,pesquisar,menu;
     int pagina=1;
 
     @Nullable
@@ -58,6 +58,7 @@ public class ListaFilmesFragment extends Fragment {
         RecyFilmes = (RecyclerView) view.findViewById(R.id.lista_filmes);
         avancar = (Button) view.findViewById(R.id.fragment_Avancar);
         voltar = (Button) view.findViewById(R.id.fragment_voltar);
+        menu = (Button) view.findViewById(R.id.menufavoritos);
         pesquisar = (Button) view.findViewById(R.id.pesquisardinamica);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
@@ -90,6 +91,14 @@ public class ListaFilmesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), PesquisarFIlme.class);
+                startActivity(i);
+            }
+        });
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), DrawerActivity.class);
                 startActivity(i);
             }
         });

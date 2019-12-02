@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class PesquisarFIlme extends AppCompatActivity {
         EditText nome;
-        Button pesquisar,voltar2,avancar2;
+        Button pesquisar,voltar2,avancar2,menupesquisar;
     RecyclerView RecyFilmes2;
     List<Filme> filmes;
     List<String> nomes;
@@ -40,6 +40,7 @@ public class PesquisarFIlme extends AppCompatActivity {
         nome = (EditText) findViewById(R.id.editText2);
         pesquisar = (Button) findViewById(R.id.butonconfim);
         avancar2 = (Button) findViewById(R.id.fragment_Avancar2);
+        menupesquisar = (Button) findViewById(R.id.voltandohome);
         voltar2 = (Button) findViewById(R.id.fragment_voltar2);
         RecyFilmes2 = (RecyclerView) findViewById(R.id.lista_filmes2);
 
@@ -77,7 +78,13 @@ public class PesquisarFIlme extends AppCompatActivity {
                 pesquisartudo(page3);
             }
         });
-
+        menupesquisar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DrawerActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
     private void pesquisartudo(String titulo ) {

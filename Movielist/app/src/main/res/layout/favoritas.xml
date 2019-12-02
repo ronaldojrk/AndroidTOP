@@ -8,12 +8,14 @@
         android:id="@+id/titulo1"
         android:text="titulo"
         android:textSize="20dp"
+        android:textColor="@color/branco"
         android:layout_marginRight="50dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ano2"
+        android:textColor="@color/branco"
 
         android:text="ano2"/>
 

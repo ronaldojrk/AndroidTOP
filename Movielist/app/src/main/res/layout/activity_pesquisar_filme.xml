@@ -59,19 +59,26 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginLeft="100dp">
+        android:layout_marginLeft="20dp">
+        <Button
+            android:id="@+id/voltandohome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menu_black_24dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VOLTAR"
+            android:background="@drawable/ic_chevron_2left_black_24dp"
             android:id="@+id/fragment_voltar2"/>
 
         <Button
             android:id="@+id/fragment_Avancar2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AVANCAR" />
+            android:background="@drawable/ic_chevron_right_black_24dp"
+            />
+
 
 
 

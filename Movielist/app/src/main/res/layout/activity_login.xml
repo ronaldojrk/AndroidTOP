@@ -5,45 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login"
-    android:background="@drawable/gradient">
+    android:background="#333333"
+    android:layout_gravity="center">
 
     <EditText
         android:id="@+id/login"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
         android:hint="email"
+        android:textColor="@color/branco"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:textColor="@color/branco"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/senha"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="senha"
+        android:textColor="@color/branco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.55"
-        android:textColor="@color/branco"/>
+        app:layout_constraintVertical_bias="0.548" />
 
     <Button
         android:id="@+id/confimar"
-        android:layout_width="match_parent"
+
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="44dp"
-        android:background="@color/roxo"
+        android:background="@drawable/button_login"
         android:text="login"
+        android:textColor="@color/roxo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/senha"
-        android:textColor="@color/branco"/>
+        app:layout_constraintTop_toBottomOf="@+id/senha" />
 
     <Button
         android:id="@+id/cadastrar"
@@ -51,15 +53,15 @@
         android:layout_height="50dp"
         android:layout_marginStart="152dp"
         android:layout_marginTop="76dp"
+        android:background="@drawable/button_cadastro"
         android:text="cadastro"
-        android:background="@color/cardview_light_background"
+        android:textColor="@color/branco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confimar"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
@@ -71,6 +73,20 @@
         android:textSize="26dp"
         android:textColor="@color/branco"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:gravity="center"
+        android:text="BEM VINDO"
+        android:textColor="@color/branco"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

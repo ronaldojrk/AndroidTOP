@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Favoritas"
-    android:background="@color/roxo"
+    android:background="#000000"
     android:paddingTop="20dp"
     android:orientation="vertical"
     >
@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/menufavoritos"
-        android:text="menu"/>
+        android:background="@drawable/ic_menu_black_24dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/todo"
         android:layout_width="match_parent"
