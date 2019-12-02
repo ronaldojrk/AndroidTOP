@@ -39,15 +39,15 @@
         android:id="@+id/butonconfim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:text="pes"
+        android:text="pesquisar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.094"
-        android:layout_gravity="center"/>
+        app:layout_constraintVertical_bias="0.094" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_filmes2"
@@ -65,21 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_menu_black_24dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_chevron_2left_black_24dp"
-            android:id="@+id/fragment_voltar2"/>
-
-        <Button
-            android:id="@+id/fragment_Avancar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_chevron_right_black_24dp"
-            />
-
-
 
 
     </LinearLayout>

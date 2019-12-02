@@ -27,7 +27,7 @@ import retrofit2.Response;
 
 public class PesquisarFIlme extends AppCompatActivity {
         EditText nome;
-        Button pesquisar,voltar2,avancar2,menupesquisar;
+        Button pesquisar,menupesquisar;
     RecyclerView RecyFilmes2;
     List<Filme> filmes;
     List<String> nomes;
@@ -39,9 +39,7 @@ public class PesquisarFIlme extends AppCompatActivity {
         setContentView(R.layout.activity_pesquisar_filme);
         nome = (EditText) findViewById(R.id.editText2);
         pesquisar = (Button) findViewById(R.id.butonconfim);
-        avancar2 = (Button) findViewById(R.id.fragment_Avancar2);
         menupesquisar = (Button) findViewById(R.id.voltandohome);
-        voltar2 = (Button) findViewById(R.id.fragment_voltar2);
         RecyFilmes2 = (RecyclerView) findViewById(R.id.lista_filmes2);
 
 
@@ -56,28 +54,7 @@ public class PesquisarFIlme extends AppCompatActivity {
                 pesquisartudo(url2);
             }
         });
-       avancar2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pagina++;
-                String page ="&page=";
-                String page2 = page.concat(String.valueOf(pagina));
-                String page3 = texto.concat(page2);
-                pesquisartudo(page3);
-            }
-        });
-        voltar2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(pagina>0){
-                    pagina--;
-                }
-                String page ="&page=";
-                String page2 = page.concat(String.valueOf(pagina));
-                String page3 = texto.concat(page2);
-                pesquisartudo(page3);
-            }
-        });
+
         menupesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

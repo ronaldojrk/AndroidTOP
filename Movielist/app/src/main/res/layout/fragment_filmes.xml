@@ -8,30 +8,34 @@
     tools:context=".Fragment.ListaFilmesFragment" android:orientation="vertical">
 
     <LinearLayout
-        android:paddingTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/menufavoritos"
-            android:background="@drawable/ic_menu_black_24dp"/>
-        <Button
-        android:layout_width="wrap_content"
+        android:layout_width="282dp"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp">
 
-            android:background="@drawable/ic_chevron_2left_black_24dp"
-        android:id="@+id/fragment_voltar"/>
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_chevron_right_black_24dp"
-            android:id="@+id/fragment_Avancar"/>
+            android:id="@+id/menufavoritos"
+            android:layout_width="46dp"
+            android:layout_height="29dp"
+            android:background="@drawable/ic_menu_black_24dp" />
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/ic_search_category_default"
-            android:id="@+id/pesquisardinamica"/>
+            android:id="@+id/fragment_voltar"
+            android:layout_width="46dp"
+
+            android:layout_height="18dp"
+            android:background="@drawable/ic_chevron_2left_black_24dp" />
+
+        <Button
+            android:id="@+id/fragment_Avancar"
+            android:layout_width="46dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_chevron_right_black_24dp" />
+
+        <Button
+            android:id="@+id/pesquisardinamica"
+            android:layout_width="55dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_search_category_default" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

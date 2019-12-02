@@ -51,7 +51,6 @@ public class DetalhesFilme extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         tvTitulo = findViewById(R.id.tvTitulo);
         favorito = findViewById(R.id.button_favorite);
-        visualizado = findViewById(R.id.button_visualizar);
 
         Intent intent = getIntent();
         FilmeParaPassa filme23= (FilmeParaPassa) intent.getSerializableExtra(EXTRA_ALUNO);
@@ -61,16 +60,6 @@ public class DetalhesFilme extends AppCompatActivity {
         tvNota.setText("nota:" + String.valueOf(filme23.voteAverage/2)+"/5");
         ratingBar.setRating((float) (filme23.voteAverage/2));
 
-        visualizado.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        tvTitulo.setText("Vizualizar");
-                    }else{
-
-                    }
-            }
-        });
         favorito.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -126,8 +115,7 @@ public class DetalhesFilme extends AppCompatActivity {
                 }
             }
         });
-        Picasso.get().load("https://image.tmdb.org/t/p/w500/"+filme23.posterPath)
-                .resize(430,200)
+        Picasso.get().load("https://image.tmdb.org/t/p/w185/"+filme23.posterPath)
                 .into(imageView);
 
     }
