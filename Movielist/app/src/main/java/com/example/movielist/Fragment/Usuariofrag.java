@@ -1,4 +1,7 @@
 package com.example.movielist.Fragment;
 
-public class Usuariofrag {
+import androidx.fragment.app.Fragment;
+
+public class Usuariofrag extends Fragment {
+
 }
